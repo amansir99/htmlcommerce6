@@ -4,196 +4,2097 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BookNest - Curated Literary Haven</title>
-    <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Crimson+Text:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Georgia', serif; line-height: 1.8; color: #5d4037; background: #f5f5dc; }
         
-        /* Header - Cozy */
-        .header { background: linear-gradient(135deg, #8d6e63 0%, #a1887f 100%); color: #fff; padding: 1rem 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(141,110,99,0.3); }
-        .nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-        .logo { font-size: 1.8rem; font-weight: 700; font-style: italic; }
-        .nav-links { display: flex; list-style: none; gap: 2rem; }
-        .nav-links a { color: #fff; text-decoration: none; transition: color 0.3s; }
-        .nav-links a:hover { color: #f4e9d4; }
-        .nav-icons { display: flex; gap: 1rem; align-items: center; }
-        .search-icon, .cart-icon { font-size: 1.2rem; cursor: pointer; }
-        .cart-count { background: #6d4c41; border-radius: 50%; padding: 0.2rem 0.5rem; font-size: 0.8rem; margin-left: 0.3rem; }
+        :root {
+            --primary-brown: #8d6e63;
+            --light-brown: #a1887f;
+            --dark-brown: #5d4037;
+            --cream: #f5f5dc;
+            --ivory: #fdfbf0;
+            --purple: #7b1fa2;
+            --gold: #ffb300;
+            --shadow: rgba(141, 110, 99, 0.2);
+        }
+
+        body { 
+            font-family: 'Crimson Text', serif; 
+            line-height: 1.8; 
+            color: var(--dark-brown); 
+            background: linear-gradient(135deg, var(--cream), #fff8e1);
+        }
         
-        /* Hero - Literary */
-        .hero { display: flex; align-items: center; max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; background: #fdfbf0; min-height: 60vh; }
-        .hero-content { flex: 1; padding-right: 2rem; }
-        .hero-content h1 { font-size: 3rem; margin-bottom: 1rem; color: #8d6e63; font-style: italic; }
-        .hero-content p { font-size: 1.2rem; margin-bottom: 2rem; color: #7b1fa2; }
-        .cta-button { background: linear-gradient(135deg, #8d6e63 0%, #a1887f 100%); color: #fff; border: none; padding: 1rem 2rem; font-size: 1.1rem; border-radius: 25px; cursor: pointer; font-style: italic; transition: opacity 0.3s; }
-        .cta-button:hover { opacity: 0.8; }
-        .hero-slider { flex: 1; position: relative; }
-        .slide { width: 100%; height: 400px; object-fit: cover; border-radius: 10px; display: none; }
-        .slide.active { display: block; }
-        .prev, .next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(141,110,99,0.7); color: #fff; border: none; padding: 1rem; cursor: pointer; border-radius: 50%; }
-        .prev { left: -1rem; }
-        .next { right: -1rem; }
+        /* Header - Enhanced Literary Theme */
+        .header { 
+            background: linear-gradient(135deg, var(--primary-brown) 0%, var(--light-brown) 100%); 
+            color: #fff; 
+            padding: 1.5rem 0; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            box-shadow: 0 4px 20px var(--shadow);
+            backdrop-filter: blur(10px);
+        }
+        .nav { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 2rem; 
+        }
+        .logo { 
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem; 
+            font-weight: 700; 
+            font-style: italic;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .logo::after {
+            content: "📚";
+            position: absolute;
+            top: -5px;
+            right: -30px;
+            font-size: 1.5rem;
+            animation: bookFloat 3s ease-in-out infinite;
+        }
+        @keyframes bookFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .nav-links { 
+            display: flex; 
+            list-style: none; 
+            gap: 2.5rem; 
+        }
+        .nav-links a { 
+            color: #fff; 
+            text-decoration: none; 
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        .nav-links a:hover {
+            color: var(--gold);
+            background: rgba(255,255,255,0.1);
+        }
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+        .nav-icons { 
+            display: flex; 
+            gap: 1.5rem; 
+            align-items: center; 
+        }
+        .search-icon, .cart-icon { 
+            font-size: 1.4rem; 
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 50%;
+        }
+        .search-icon:hover, .cart-icon:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.1);
+        }
+        .cart-count { 
+            background: linear-gradient(45deg, var(--gold), #ffc107); 
+            color: var(--dark-brown);
+            border-radius: 50%; 
+            padding: 0.3rem 0.6rem; 
+            font-size: 0.8rem; 
+            font-weight: 700;
+            margin-left: 0.5rem;
+            animation: pulse 2s infinite;
+            box-shadow: 0 2px 8px rgba(255,179,0,0.3);
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
         
-        /* Promo - Chapter Deal */
-        .promo-banner { background: linear-gradient(135deg, #d7ccc8 0%, #c5ada5 100%); padding: 3rem 2rem; text-align: center; color: #5d4037; }
-        .banner-content h2 { font-size: 2.5rem; margin-bottom: 1rem; font-style: italic; }
-        .banner-content p { font-size: 1.1rem; margin-bottom: 1rem; max-width: 800px; margin-left: auto; margin-right: auto; }
-        .promo-timer { background: #fff; padding: 1rem; border-radius: 5px; margin: 1rem 0; font-size: 1.2rem; font-style: italic; }
-        .banner-button { background: #8d6e63; color: #fff; border: none; padding: 1rem 2rem; font-size: 1.1rem; border-radius: 25px; cursor: pointer; margin-top: 1rem; }
+        /* Hero - Literary Ambiance */
+        .hero { 
+            display: flex; 
+            align-items: center; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 6rem 2rem; 
+            background: linear-gradient(135deg, var(--ivory) 0%, #fff 100%);
+            min-height: 70vh;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50%" font-size="80" opacity="0.02">📖</text></svg>') repeat;
+            background-size: 100px 100px;
+            pointer-events: none;
+        }
+        .hero-content { 
+            flex: 1; 
+            padding-right: 4rem;
+            z-index: 1;
+        }
+        .hero-content h1 { 
+            font-family: 'Playfair Display', serif;
+            font-size: 3.8rem; 
+            margin-bottom: 1.5rem; 
+            color: var(--primary-brown); 
+            font-style: italic;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .hero-content .subtitle {
+            font-size: 1.4rem;
+            color: var(--purple);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        .hero-content p { 
+            font-size: 1.3rem; 
+            margin-bottom: 2.5rem; 
+            color: var(--dark-brown);
+            line-height: 1.8;
+        }
+        .cta-button { 
+            background: linear-gradient(135deg, var(--primary-brown) 0%, var(--light-brown) 100%); 
+            color: #fff; 
+            border: none; 
+            padding: 1.2rem 2.5rem; 
+            font-size: 1.1rem; 
+            border-radius: 30px; 
+            cursor: pointer; 
+            font-style: italic;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        .cta-button:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--shadow);
+        }
+        .hero-slider { 
+            flex: 1; 
+            position: relative;
+            z-index: 1;
+        }
+        .slide { 
+            width: 100%; 
+            height: 450px; 
+            object-fit: cover; 
+            border-radius: 15px; 
+            display: none;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border: 3px solid var(--gold);
+        }
+        .slide.active { 
+            display: block;
+            animation: slideIn 0.8s ease-in-out;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .slider-nav {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+        }
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(141, 110, 99, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .slider-dot.active {
+            background: var(--gold);
+            transform: scale(1.3);
+        }
+        .prev, .next { 
+            position: absolute; 
+            top: 50%; 
+            transform: translateY(-50%); 
+            background: rgba(141,110,99,0.8); 
+            color: #fff; 
+            border: none; 
+            padding: 1.2rem; 
+            cursor: pointer; 
+            border-radius: 50%;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .prev:hover, .next:hover {
+            background: var(--primary-brown);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .prev { left: -2rem; }
+        .next { right: -2rem; }
         
-        /* About - Literary History */
-        .about { max-width: 1200px; margin: 4rem auto; padding: 0 2rem; display: flex; gap: 4rem; align-items: center; background: #fdfbf0; border-radius: 10px; }
+        /* Promo Banner - Enhanced */
+        .promo-banner { 
+            background: linear-gradient(135deg, #d7ccc8 0%, #c5ada5 100%); 
+            padding: 4rem 2rem; 
+            text-align: center; 
+            color: var(--dark-brown);
+            position: relative;
+            overflow: hidden;
+        }
+        .promo-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 20px,
+                rgba(255,255,255,0.1) 20px,
+                rgba(255,255,255,0.1) 40px
+            );
+            animation: bannerMove 15s linear infinite;
+        }
+        @keyframes bannerMove {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        .banner-content { 
+            position: relative;
+            z-index: 1;
+        }
+        .banner-content h2 { 
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem; 
+            margin-bottom: 1.5rem; 
+            font-style: italic;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .banner-content p { 
+            font-size: 1.2rem; 
+            margin-bottom: 1.5rem; 
+            max-width: 800px; 
+            margin-left: auto; 
+            margin-right: auto;
+            line-height: 1.8;
+        }
+        .promo-timer { 
+            background: linear-gradient(135deg, #fff, #f8f8f8); 
+            padding: 1.5rem 2rem; 
+            border-radius: 50px; 
+            margin: 2rem auto; 
+            font-size: 1.4rem; 
+            font-style: italic;
+            font-weight: 600;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            display: inline-block;
+            border: 2px solid var(--gold);
+        }
+        .banner-button { 
+            background: linear-gradient(135deg, var(--primary-brown), var(--light-brown)); 
+            color: #fff; 
+            border: none; 
+            padding: 1.2rem 2.5rem; 
+            font-size: 1.1rem; 
+            border-radius: 30px; 
+            cursor: pointer; 
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+        .banner-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--shadow);
+        }
+        
+        /* About Section - Enhanced */
+        .about { 
+            max-width: 1200px; 
+            margin: 6rem auto; 
+            padding: 3rem 2rem; 
+            display: flex; 
+            gap: 5rem; 
+            align-items: center; 
+            background: linear-gradient(135deg, var(--ivory) 0%, #fff 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
         .about-text { flex: 1; }
-        .about-text h2 { font-size: 2.5rem; margin-bottom: 1rem; color: #8d6e63; font-style: italic; }
-        .about-text p { font-size: 1.1rem; margin-bottom: 1.5rem; }
-        .stats { display: flex; gap: 2rem; margin-top: 2rem; }
-        .stat { text-align: center; }
-        .stat h3 { font-size: 2rem; color: #a1887f; margin-bottom: 0.5rem; }
-        .about-image { flex: 1; width: 100%; border-radius: 10px; }
+        .about-text h2 { 
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem; 
+            margin-bottom: 1.5rem; 
+            color: var(--primary-brown); 
+            font-style: italic;
+        }
+        .about-text p { 
+            font-size: 1.2rem; 
+            margin-bottom: 1.8rem;
+            line-height: 1.8;
+        }
+        .stats { 
+            display: flex; 
+            gap: 3rem; 
+            margin-top: 3rem; 
+            justify-content: space-between;
+        }
+        .stat { 
+            text-align: center;
+            background: linear-gradient(135deg, var(--cream), #fff);
+            padding: 2rem 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            flex: 1;
+            transition: transform 0.3s ease;
+        }
+        .stat:hover {
+            transform: translateY(-5px);
+        }
+        .stat h3 { 
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem; 
+            color: var(--gold); 
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        .stat p {
+            color: var(--primary-brown);
+            font-weight: 500;
+        }
+        .about-image { 
+            flex: 1; 
+            position: relative;
+        }
+        .about-image img { 
+            width: 100%; 
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        .about-image:hover img {
+            transform: scale(1.02);
+        }
         
-        /* Trust Signals */
-        .trust-signals { background: #f5f5dc; padding: 2rem; display: flex; justify-content: space-around; flex-wrap: wrap; max-width: 1200px; margin: 2rem auto; }
-        .signal { width: 80px; height: 80px; border-radius: 50%; background: #8d6e63; display: flex; align-items: center; justify-content: center; color: #fff; margin-bottom: 1rem; }
-        .signals-container p { text-align: center; max-width: 150px; color: #8d6e63; font-style: italic; }
+        /* Trust Signals - Enhanced */
+        .trust-signals { 
+            background: var(--cream); 
+            padding: 4rem 2rem; 
+            display: flex; 
+            justify-content: space-around; 
+            flex-wrap: wrap; 
+            max-width: 1200px; 
+            margin: 4rem auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .signals-container {
+            text-align: center;
+            margin: 1rem;
+        }
+        .signal { 
+            width: 100px; 
+            height: 100px; 
+            border-radius: 50%; 
+            background: linear-gradient(135deg, var(--primary-brown), var(--light-brown)); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: #fff; 
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            box-shadow: 0 8px 25px var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        .signal:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        .signals-container p { 
+            text-align: center; 
+            max-width: 150px; 
+            color: var(--primary-brown); 
+            font-style: italic;
+            font-weight: 500;
+        }
         
-        /* Products - Book Shelf */
-        .products { max-width: 1200px; margin: 4rem auto; padding: 0 2rem; }
-        .products h2 { font-size: 2.5rem; text-align: center; margin-bottom: 1rem; color: #8d6e63; font-style: italic; }
-        .section-subtitle { text-align: center; font-size: 1.1rem; margin-bottom: 3rem; color: #7b1fa2; }
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-        .product-card { background: #fdfbf0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(141,110,99,0.2); transition: transform 0.3s; }
-        .product-card:hover { transform: translateY(-5px); }
-        .product-card img { width: 100%; height: 200px; object-fit: cover; }
-        .product-info { padding: 1.5rem; }
-        .product-info h3 { margin-bottom: 0.5rem; color: #8d6e63; font-style: italic; }
-        .price { font-size: 1.5rem; color: #a1887f; font-weight: 700; margin-bottom: 0.5rem; }
-        .description { margin-bottom: 1rem; color: #7b1fa2; font-style: italic; }
-        .add-to-cart { background: #8d6e63; color: #fff; border: none; padding: 0.8rem 1.5rem; border-radius: 5px; cursor: pointer; width: 100%; font-style: italic; }
+        /* Products Section - Enhanced */
+        .products { 
+            max-width: 1200px; 
+            margin: 6rem auto; 
+            padding: 0 2rem; 
+        }
+        .products h2 { 
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem; 
+            text-align: center; 
+            margin-bottom: 1rem; 
+            color: var(--primary-brown); 
+            font-style: italic;
+        }
+        .section-subtitle { 
+            text-align: center; 
+            font-size: 1.2rem; 
+            margin-bottom: 4rem; 
+            color: var(--purple);
+            font-style: italic;
+        }
+        .products-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 3rem; 
+        }
+        .product-card { 
+            background: linear-gradient(135deg, var(--ivory) 0%, #fff 100%);
+            border-radius: 20px; 
+            overflow: hidden; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1); 
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--primary-brown), var(--gold));
+        }
+        .product-card:hover { 
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .product-card img { 
+            width: 100%; 
+            height: 250px; 
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover img {
+            transform: scale(1.1);
+        }
+        .product-info { 
+            padding: 2rem; 
+        }
+        .product-info h3 { 
+            margin-bottom: 0.8rem; 
+            color: var(--primary-brown); 
+            font-style: italic;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        .price { 
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem; 
+            color: var(--gold); 
+            font-weight: 700; 
+            margin-bottom: 0.8rem; 
+        }
+        .description { 
+            margin-bottom: 1.5rem; 
+            color: var(--purple); 
+            font-style: italic;
+            line-height: 1.6;
+        }
+        .add-to-cart { 
+            background: linear-gradient(135deg, var(--primary-brown), var(--light-brown)); 
+            color: #fff; 
+            border: none; 
+            padding: 1rem 2rem; 
+            border-radius: 30px; 
+            cursor: pointer; 
+            width: 100%; 
+            font-style: italic;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+        .add-to-cart:hover {
+            background: linear-gradient(135deg, var(--light-brown), var(--primary-brown));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--shadow);
+        }
         
-        /* Categories */
-        .categories { background: #f5f5dc; padding: 4rem 2rem; }
-        .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1200px; margin: 3rem auto; }
-        .category-card { background: #fdfbf0; border-radius: 10px; overflow: hidden; text-align: center; box-shadow: 0 4px 15px rgba(141,110,99,0.2); }
-        .category-card img { width: 100%; height: 150px; object-fit: cover; }
-        .category-card h3 { padding: 1rem; color: #8d6e63; font-style: italic; }
-        .category-card p { padding: 0 1rem 1rem; color: #7b1fa2; }
+        /* Categories - Enhanced */
+        .categories { 
+            background: linear-gradient(135deg, var(--cream) 0%, #fff8e1 100%); 
+            padding: 6rem 2rem; 
+        }
+        .categories h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--primary-brown);
+            font-style: italic;
+        }
+        .categories-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 3rem; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        .category-card { 
+            background: linear-gradient(135deg, var(--ivory) 0%, #fff 100%);
+            border-radius: 20px; 
+            overflow: hidden; 
+            text-align: center; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--primary-brown));
+        }
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        .category-card img { 
+            width: 100%; 
+            height: 200px; 
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .category-card:hover img {
+            transform: scale(1.05);
+        }
+        .category-card h3 { 
+            padding: 1.5rem 1rem 0.5rem; 
+            color: var(--primary-brown); 
+            font-style: italic;
+            font-size: 1.3rem;
+        }
+        .category-card p { 
+            padding: 0 1.5rem 2rem; 
+            color: var(--purple);
+            font-style: italic;
+        }
         
-        /* Brands */
-.brands { max-width: 1200px; margin: 4rem auto; padding: 0 2rem; text-align: center; }
-.brands-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        /* Additional sections styling improvements */
+        .brands { 
+            max-width: 1200px; 
+            margin: 6rem auto; 
+            padding: 0 2rem; 
+            text-align: center; 
+        }
+        .brands h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-brown);
+            font-style: italic;
+        }
+        .brands-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 2.5rem; 
+            margin-top: 4rem; 
+        }
+        .brands-grid div {
+            background: linear-gradient(135deg, #fff 0%, var(--ivory) 100%);
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .brands-grid div:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        .brand-logo img { 
+            width: 100px; 
+            height: 100px; 
+            object-fit: contain; 
+            margin-bottom: 1.5rem;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+        .brands-grid div:hover .brand-logo img {
+            filter: grayscale(0%);
+        }
+        .brand-logo p { 
+            font-weight: 600; 
+            color: var(--primary-brown);
+            font-size: 1.1rem;
+        }
 
-.brands-grid div {
-  background: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(141,110,99,0.2);
-  transition: transform 0.3s;
-}
+        /* Why Choose - Enhanced */
+        .why-choose { 
+            background: linear-gradient(135deg, var(--primary-brown) 0%, var(--light-brown) 100%); 
+            color: white; 
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .why-choose::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: floatPattern 20s linear infinite;
+        }
+        @keyframes floatPattern {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        .why-choose h2 { 
+            font-family: 'Playfair Display', serif;
+            text-align: center; 
+            font-size: 3rem; 
+            margin-bottom: 2rem; 
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        .features-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            gap: 3rem; 
+            max-width: 1200px; 
+            margin: 4rem auto;
+            position: relative;
+            z-index: 1;
+        }
+        .feature { 
+            text-align: center; 
+            padding: 3rem 2rem; 
+            background: rgba(255,255,255,0.15); 
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        .feature:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-5px);
+        }
+        .feature-icon { 
+            font-size: 4rem; 
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        .feature h3 { 
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        .feature p {
+            line-height: 1.8;
+            opacity: 0.9;
+        }
 
-.brands-grid div:hover {
-  transform: translateY(-5px);
-}
+        /* Best Sellers - Enhanced */
+        .best-sellers { 
+            max-width: 1200px; 
+            margin: 6rem auto; 
+            padding: 0 2rem; 
+        }
+        .best-sellers h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--primary-brown);
+            font-style: italic;
+        }
+        .sellers-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 2.5rem; 
+        }
+        .seller-item { 
+            background: linear-gradient(135deg, var(--ivory) 0%, #fff 100%);
+            border-radius: 15px; 
+            overflow: hidden; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08); 
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .seller-item::before {
+            content: '🏆';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            z-index: 1;
+        }
+        .seller-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        .seller-item img { 
+            width: 100%; 
+            height: 220px; 
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .seller-item:hover img {
+            transform: scale(1.05);
+        }
+        .seller-item h4 { 
+            padding: 1.5rem 1rem 0.5rem; 
+            color: var(--primary-brown);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .seller-item p { 
+            padding: 0 1rem 2rem; 
+            color: var(--gold); 
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
 
-.brand-logo img { width: 80px; height: 80px; object-fit: contain; margin-bottom: 1rem; }
-.brand-logo p { font-weight: 500; color: #8d6e63; }
+        /* Testimonials - Enhanced */
+        .testimonials { 
+            background: linear-gradient(135deg, var(--cream) 0%, #fff8e1 100%); 
+            padding: 6rem 2rem; 
+        }
+        .testimonials h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--primary-brown);
+            font-style: italic;
+        }
+        .testimonials-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+            gap: 3rem; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        .testimonial { 
+            background: linear-gradient(135deg, #fff 0%, var(--ivory) 100%);
+            padding: 3rem 2rem; 
+            border-radius: 20px; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08); 
+            font-style: italic;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+        }
+        .testimonial:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        .testimonial p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: var(--dark-brown);
+        }
+        .testimonial span { 
+            display: block; 
+            margin-top: 1.5rem; 
+            font-weight: 700; 
+            color: var(--primary-brown);
+            font-style: normal;
+        }
+        .stars { 
+            color: var(--gold); 
+            font-size: 1.3rem; 
+            margin-top: 1rem; 
+        }
+        .more-testimonial { 
+            background: linear-gradient(135deg, #d7ccc8 0%, #c5ada5 100%); 
+            color: var(--dark-brown); 
+            padding: 2rem; 
+            border-radius: 15px; 
+            margin: 2rem 0;
+            border-left: 4px solid var(--gold);
+        }
 
-/* Why Choose */
-.why-choose { background: linear-gradient(135deg, #8d6e63 0%, #a1887f 100%); color: white; padding: 4rem 2rem; }
-.why-choose h2 { text-align: center; font-size: 2.5rem; margin-bottom: 1rem; font-style: italic; }
-.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 3rem auto; }
-.feature { text-align: center; padding: 2rem; background: rgba(255,255,255,0.1); border-radius: 10px; }
-.feature-icon { font-size: 3rem; margin-bottom: 1rem; }
-.feature h3 { margin-bottom: 1rem; }
+        /* Blog - Enhanced */
+        .blog { 
+            max-width: 1200px; 
+            margin: 6rem auto; 
+            padding: 0 2rem; 
+        }
+        .blog h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--primary-brown);
+            font-style: italic;
+        }
+        .blog-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); 
+            gap: 3rem; 
+        }
+        .blog-post { 
+            background: linear-gradient(135deg, #fff 0%, var(--ivory) 100%);
+            border-radius: 20px; 
+            overflow: hidden; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        .blog-post:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .blog-post img { 
+            width: 100%; 
+            height: 250px; 
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .blog-post:hover img {
+            transform: scale(1.05);
+        }
+        .blog-post h3 { 
+            padding: 2rem 2rem 1rem; 
+            color: var(--primary-brown);
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        .blog-post p { 
+            padding: 0 2rem; 
+            color: var(--purple);
+            line-height: 1.7;
+        }
+        .read-more { 
+            display: block; 
+            padding: 1.5rem 2rem; 
+            text-align: center; 
+            background: linear-gradient(135deg, var(--primary-brown), var(--light-brown)); 
+            color: white; 
+            text-decoration: none; 
+            margin: 1.5rem; 
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        .read-more:hover {
+            background: linear-gradient(135deg, var(--light-brown), var(--primary-brown));
+            transform: translateY(-2px);
+        }
 
-/* Best Sellers */
-.best-sellers { max-width: 1200px; margin: 4rem auto; padding: 0 2rem; }
-.sellers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-.seller-item { background: #fdfbf0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(141,110,99,0.1); text-align: center; }
-.seller-item img { width: 100%; height: 180px; object-fit: cover; }
-.seller-item h4 { padding: 1rem; color: #8d6e63; }
-.seller-item p { padding: 0 1rem 1rem; color: #a1887f; font-weight: 700; }
+        /* FAQ - Enhanced */
+        .faq { 
+            background: linear-gradient(135deg, var(--cream) 0%, #fff8e1 100%); 
+            padding: 6rem 2rem; 
+        }
+        .faq h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--primary-brown);
+            font-style: italic;
+        }
+        .faq-grid { 
+            max-width: 800px; 
+            margin: 0 auto; 
+        }
+        .faq-item { 
+            background: linear-gradient(135deg, #fff 0%, var(--ivory) 100%);
+            margin-bottom: 1.5rem; 
+            padding: 2rem; 
+            border-radius: 15px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--gold);
+        }
+        .faq-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+        .faq-item h3 { 
+            margin-bottom: 1rem; 
+            color: var(--primary-brown);
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        .faq-item p { 
+            color: var(--purple); 
+            display: none;
+            line-height: 1.7;
+            padding-top: 1rem;
+            border-top: 1px solid var(--cream);
+        }
+        .faq-item.active p {
+            display: block;
+        }
 
-/* Testimonials */
-.testimonials { background: #f5f5dc; padding: 4rem 2rem; }
-.testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; max-width: 1200px; margin: 3rem auto; }
-.testimonial { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 15px rgba(141,110,99,0.1); font-style: italic; }
-.testimonial span { display: block; margin-top: 1rem; font-weight: 700; color: #8d6e63; }
-.stars { color: #ffcc80; font-size: 1.2rem; margin-top: 1rem; }
-.more-testimonial { background: linear-gradient(135deg, #d7ccc8 0%, #c5ada5 100%); color: #5d4037; padding: 1.5rem; border-radius: 5px; margin: 1rem 0; }
+        /* Newsletter - Enhanced */
+        .newsletter { 
+            background: linear-gradient(135deg, var(--primary-brown) 0%, var(--light-brown) 100%); 
+            color: white; 
+            text-align: center; 
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .newsletter::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 2px, transparent 2px);
+            background-size: 40px 40px;
+            animation: newsletterFloat 25s linear infinite;
+        }
+        @keyframes newsletterFloat {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        .newsletter h2 { 
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem; 
+            margin-bottom: 1.5rem; 
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        .newsletter p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+            opacity: 0.9;
+        }
+        .newsletter-form { 
+            display: flex; 
+            justify-content: center; 
+            gap: 1rem; 
+            max-width: 500px; 
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .newsletter-form input { 
+            padding: 1.2rem 1.5rem; 
+            border: none; 
+            border-radius: 30px; 
+            flex: 1;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .newsletter-form button { 
+            background: linear-gradient(135deg, #fff, #f8f8f8); 
+            color: var(--primary-brown); 
+            border: none; 
+            padding: 1.2rem 2rem; 
+            border-radius: 30px; 
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .newsletter-form button:hover {
+            background: linear-gradient(135deg, #f8f8f8, #fff);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .privacy-note { 
+            margin-top: 2rem;
+            opacity: 0.8;
+            position: relative;
+            z-index: 1;
+        }
+        .privacy-note a { 
+            color: var(--gold);
+            text-decoration: none;
+        }
 
-/* Blog */
-.blog { max-width: 1200px; margin: 4rem auto; padding: 0 2rem; }
-.blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
-.blog-post { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(141,110,99,0.1); }
-.blog-post img { width: 100%; height: 200px; object-fit: cover; }
-.blog-post h3 { padding: 1rem; color: #8d6e63; }
-.blog-post p { padding: 0 1rem; color: #7b1fa2; }
-.read-more { display: block; padding: 1rem; text-align: center; background: #8d6e63; color: white; text-decoration: none; margin: 1rem; border-radius: 5px; }
+        /* Contact - Enhanced */
+        .contact { 
+            max-width: 1200px; 
+            margin: 6rem auto; 
+            padding: 3rem 2rem; 
+            display: flex; 
+            gap: 5rem; 
+            align-items: flex-start; 
+            background: linear-gradient(135deg, var(--ivory) 0%, #fff 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .contact-info { 
+            flex: 1; 
+        }
+        .contact-info h3 { 
+            margin-bottom: 2rem; 
+            color: var(--primary-brown);
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-style: italic;
+        }
+        .contact-info p {
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            color: var(--dark-brown);
+        }
+        .contact-form { 
+            flex: 1; 
+        }
+        .contact-form input, .contact-form textarea { 
+            width: 100%; 
+            padding: 1.2rem 1.5rem; 
+            margin-bottom: 1.5rem; 
+            border: 2px solid var(--cream); 
+            border-radius: 10px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        .contact-form button { 
+            background: linear-gradient(135deg, var(--primary-brown), var(--light-brown)); 
+            color: white; 
+            border: none; 
+            padding: 1.2rem 2.5rem; 
+            border-radius: 30px; 
+            cursor: pointer; 
+            width: 100%;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+        .contact-form button:hover {
+            background: linear-gradient(135deg, var(--light-brown), var(--primary-brown));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--shadow);
+        }
+        .social-links { 
+            display: flex; 
+            gap: 1.5rem; 
+            margin-top: 2rem; 
+        }
+        .social-links a { 
+            color: var(--primary-brown); 
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 50%;
+            background: var(--cream);
+        }
+        .social-links a:hover {
+            color: var(--gold);
+            background: var(--primary-brown);
+            color: white;
+            transform: scale(1.1);
+        }
 
-/* FAQ */
-.faq { background: #f5f5dc; padding: 4rem 2rem; }
-.faq-grid { max-width: 800px; margin: 3rem auto; }
-.faq-item { background: white; margin-bottom: 1rem; padding: 1.5rem; border-radius: 10px; box-shadow: 0 2px 10px rgba(141,110,99,0.05); cursor: pointer; }
-.faq-item h3 { margin-bottom: 0.5rem; color: #8d6e63; }
-.faq-item p { color: #7b1fa2; display: none; }
+        /* Footer - Enhanced */
+        .footer { 
+            background: linear-gradient(135deg, var(--dark-brown) 0%, #3e2723 100%);
+            color: white; 
+            padding: 4rem 2rem 2rem;
+            position: relative;
+        }
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--primary-brown), var(--gold));
+        }
+        .footer-content { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 3rem; 
+        }
+        .footer-section h4 { 
+            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--gold);
+            font-style: italic;
+        }
+        .footer-section ul { 
+            list-style: none; 
+        }
+        .footer-section ul li { 
+            margin-bottom: 0.8rem; 
+        }
+        .footer-section a { 
+            color: #e0e0e0; 
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+        .footer-newsletter { 
+            display: flex; 
+            gap: 0.5rem; 
+            margin-top: 1.5rem; 
+        }
+        .footer-newsletter input { 
+            flex: 1; 
+            padding: 0.8rem 1rem; 
+            border: none; 
+            border-radius: 25px;
+            background: rgba(255,255,255,0.9);
+        }
+        .footer-newsletter button { 
+            background: linear-gradient(135deg, var(--light-brown), var(--primary-brown)); 
+            color: white; 
+            border: none; 
+            padding: 0.8rem 1.5rem; 
+            border-radius: 25px; 
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .footer-newsletter button:hover {
+            background: linear-gradient(135deg, var(--primary-brown), var(--light-brown));
+            transform: scale(1.05);
+        }
+        .footer-bottom { 
+            text-align: center; 
+            margin-top: 3rem; 
+            padding-top: 2rem; 
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #ccc;
+            font-style: italic;
+        }
 
-/* Newsletter */
-.newsletter { background: linear-gradient(135deg, #8d6e63 0%, #a1887f 100%); color: white; text-align: center; padding: 3rem 2rem; }
-.newsletter h2 { font-size: 2.5rem; margin-bottom: 1rem; font-style: italic; }
-.newsletter-form { display: flex; justify-content: center; gap: 1rem; max-width: 500px; margin: 2rem auto; }
-.newsletter-form input { padding: 1rem; border: none; border-radius: 25px; flex: 1; }
-.newsletter-form button { background: white; color: #8d6e63; border: none; padding: 1rem 2rem; border-radius: 25px; cursor: pointer; }
-.privacy-note { margin-top: 1rem; }
-.privacy-note a { color: #f4e9d4; }
+        /* Additional Enhanced Sections */
+        .case-studies { 
+            max-width: 1200px; 
+            margin: 6rem auto; 
+            padding: 0 2rem; 
+        }
+        .case-studies h2 { 
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem; 
+            text-align: center; 
+            margin-bottom: 4rem; 
+            color: var(--primary-brown); 
+            font-style: italic;
+        }
+        .cases-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); 
+            gap: 3rem; 
+        }
+        .case { 
+            background: linear-gradient(135deg, #fff 0%, var(--ivory) 100%);
+            border-radius: 20px; 
+            overflow: hidden; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        .case:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .case img { 
+            width: 100%; 
+            height: 250px; 
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .case:hover img {
+            transform: scale(1.05);
+        }
+        .case-content { 
+            padding: 2rem; 
+        }
 
-/* Contact */
-.contact { max-width: 1200px; margin: 4rem auto; padding: 0 2rem; display: flex; gap: 4rem; align-items: flex-start; background: #fdfbf0; border-radius: 10px; padding: 2rem; }
-.contact-info { flex: 1; }
-.contact-info h3 { margin-bottom: 1rem; color: #8d6e63; }
-.contact-form { flex: 1; }
-.contact-form input, .contact-form textarea { width: 100%; padding: 1rem; margin-bottom: 1rem; border: 1px solid #e0e0e0; border-radius: 5px; }
-.contact-form button { background: #8d6e63; color: white; border: none; padding: 1rem 2rem; border-radius: 25px; cursor: pointer; width: 100%; }
-.social-links { display: flex; gap: 1rem; margin-top: 1rem; }
-.social-links a { color: #8d6e63; text-decoration: none; }
+        .sustainability { 
+            background: linear-gradient(135deg, var(--cream) 0%, #fff8e1 100%); 
+            padding: 6rem 2rem; 
+            text-align: center; 
+        }
+        .sustainability h2 { 
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem; 
+            margin-bottom: 2rem; 
+            color: var(--primary-brown); 
+            font-style: italic;
+        }
+        .sustainability p { 
+            max-width: 800px; 
+            margin: 0 auto 3rem; 
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+        .sustainability-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 3rem; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        .sust-item { 
+            background: linear-gradient(135deg, #fff 0%, var(--ivory) 100%);
+            padding: 2.5rem 2rem; 
+            border-radius: 15px; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--gold);
+        }
+        .sust-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
 
-/* Footer */
-.footer { background: #5d4037; color: white; padding: 3rem 2rem 1rem; }
-.footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-.footer-section h4 { margin-bottom: 1rem; }
-.footer-section ul { list-style: none; }
-.footer-section ul li { margin-bottom: 0.5rem; }
-.footer-section a { color: #e0e0e0; text-decoration: none; }
-.footer-newsletter { display: flex; gap: 0.5rem; margin-top: 1rem; }
-.footer-newsletter input { flex: 1; padding: 0.5rem; border: none; border-radius: 5px; }
-.footer-newsletter button { background: #a1887f; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; }
-.footer-bottom { text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #7e57c2; color: #e0e0e0; }
+        .partners { 
+            background: var(--ivory); 
+            padding: 6rem 2rem; 
+        }
+        .partners h2 { 
+            font-family: 'Playfair Display', serif;
+            text-align: center; 
+            font-size: 3rem; 
+            margin-bottom: 4rem; 
+            color: var(--primary-brown); 
+            font-style: italic;
+        }
+        .partners-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 3rem; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        .partner { 
+            text-align: center; 
+            background: linear-gradient(135deg, #fff 0%, var(--cream) 100%);
+            padding: 3rem 2rem; 
+            border-radius: 15px; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .partner:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        .partner img { 
+            width: 120px; 
+            height: 120px; 
+            object-fit: contain; 
+            margin-bottom: 1.5rem;
+            filter: grayscale(50%);
+            transition: filter 0.3s ease;
+        }
+        .partner:hover img {
+            filter: grayscale(0%);
+        }
 
-/* Additional Sections for Expanded Content */
-.case-studies { max-width: 1200px; margin: 4rem auto; padding: 0 2rem; }
-.case-studies h2 { font-size: 2.5rem; text-align: center; margin-bottom: 1rem; color: #8d6e63; font-style: italic; }
-.cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-top: 3rem; }
-.case { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(141,110,99,0.1); }
-.case img { width: 100%; height: 200px; object-fit: cover; }
-.case-content { padding: 1.5rem; }
+        /* Responsive Design - Enhanced */
+        @media (max-width: 768px) {
+            .nav { 
+                flex-direction: column; 
+                gap: 1rem; 
+                padding: 1rem;
+            }
+            .nav-links {
+                gap: 1.5rem;
+            }
+            .hero { 
+                flex-direction: column; 
+                text-align: center;
+                padding: 4rem 1rem;
+            }
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 3rem;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .about { 
+                flex-direction: column;
+                gap: 3rem;
+                padding: 2rem 1rem;
+            }
+            .contact { 
+                flex-direction: column;
+                gap: 3rem;
+                padding: 2rem 1rem;
+            }
+            .newsletter-form { 
+                flex-direction: column; 
+                align-items: stretch;
+                gap: 1rem;
+            }
+            .stats { 
+                flex-direction: column;
+                gap: 2rem;
+            }
+            .products-grid,
+            .categories-grid,
+            .features-grid,
+            .testimonials-grid,
+            .blog-grid,
+            .cases-grid,
+            .sustainability-grid,
+            .partners-grid,
+            .brands-grid,
+            .sellers-grid {
+                grid-template-columns: 1fr;
+            }
+            .prev { left: -1rem; }
+            .next { right: -1rem; }
+            h1, h2 {
+                font-size: 2rem !important;
+            }
+        }
 
-.sustainability { background: #f5f5dc; padding: 4rem 2rem; text-align: center; }
-.sustainability h2 { font-size: 2.5rem; margin-bottom: 1rem; color: #8d6e63; font-style: italic; }
-.sustainability p { max-width: 800px; margin: 0 auto 2rem; font-size: 1.1rem; }
-.sustainability-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1200px; margin: 3rem auto; }
-.sust-item { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 15px rgba(141,110,99,0.1); }
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .cta-button,
+            .banner-button,
+            .add-to-cart {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+            }
+            .products-grid,
+            .categories-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">BookNest</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#products">Books</a></li>
+                <li><a href="#categories">Genres</a></li>
+                <li><a href="#blog">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <span class="search-icon">🔍</span>
+                <span class="cart-icon">📚<span class="cart-count">0</span></span>
+            </div>
+        </nav>
+    </header>
 
-.partners { background: #fdfbf0; padding: 4rem 2rem; }
-.partners h2 { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: #8d6e63; font-style: italic; }
-.partners-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
-.partner { text-align: center; background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 15px rgba(141,110,99,0.1); }
-.partner img { width: 100px; height: 100px; object-fit: contain; margin-bottom: 1rem; }
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Your Literary Journey Begins Here</h1>
+            <p class="subtitle">Discover • Explore • Transform</p>
+            <p>Immerse yourself in carefully curated collections that span centuries of human storytelling. From timeless classics to contemporary masterpieces, find your next great read in our thoughtfully organized literary haven.</p>
+            <button class="cta-button">Begin Your Adventure</button>
+        </div>
+        <div class="hero-slider">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Classic Literature" class="slide active">
+            <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern Books" class="slide">
+            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Reading Corner" class="slide">
+            <div class="slider-nav">
+                <div class="slider-dot active"></div>
+                <div class="slider-dot"></div>
+                <div class="slider-dot"></div>
+            </div>
+            <button class="prev">❮</button>
+            <button class="next">❯</button>
+        </div>
+    </section>
 
-/* Responsive */
-@media (max-width: 768px) {
-    .nav { flex-direction: column; gap: 1rem; }
-    .hero { flex-direction: column; text-align: center; }
-    .about { flex-direction: column; }
-    .contact { flex-direction: column; }
-    .newsletter-form { flex-direction: column; align-items: center; }
-    .stats { justify-content: center; flex-wrap: wrap; }
-}
+    <!-- Promo Banner -->
+    <section class="promo-banner">
+        <div class="banner-content">
+            <h2>Spring Reading Festival</h2>
+            <p>Celebrate the season of renewal with our exclusive collection of award-winning titles. Each book has been carefully selected by our literary experts to provide you with transformative reading experiences that will enrich your mind and soul.</p>
+            <div class="promo-timer">Limited Time: <span id="timer">23:59:59</span></div>
+            <button class="banner-button">Explore Festival Collection</button>
+        </div>
+    </section>
+
+    <!-- Trust Signals -->
+    <section class="trust-signals">
+        <div class="signals-container">
+            <div class="signal">📚</div>
+            <p>50,000+ Curated Titles</p>
+        </div>
+        <div class="signals-container">
+            <div class="signal">⭐</div>
+            <p>Expert Reviews & Ratings</p>
+        </div>
+        <div class="signals-container">
+            <div class="signal">🚚</div>
+            <p>Free Worldwide Shipping</p>
+        </div>
+        <div class="signals-container">
+            <div class="signal">🔒</div>
+            <p>Secure Payment</p>
+        </div>
+        <div class="signals-container">
+            <div class="signal">💎</div>
+            <p>First Edition Guarantee</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-text">
+            <h2>Our Literary Heritage</h2>
+            <p>Founded by passionate bibliophiles in 1952, BookNest has been a sanctuary for book lovers across generations. Our mission extends beyond mere book selling – we are custodians of literary culture, fostering a community where stories come alive and knowledge finds its home.</p>
+            <p>Every book in our collection is handpicked by our team of literary scholars and seasoned readers, ensuring that each title meets our exacting standards for quality, significance, and reader engagement.</p>
+            <div class="stats">
+                <div class="stat">
+                    <h3>71</h3>
+                    <p>Years of Excellence</p>
+                </div>
+                <div class="stat">
+                    <h3>150K+</h3>
+                    <p>Happy Readers</p>
+                </div>
+                <div class="stat">
+                    <h3>2M+</h3>
+                    <p>Books Delivered</p>
+                </div>
+            </div>
+        </div>
+        <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Library Heritage">
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <h2>Featured Collections</h2>
+        <p class="section-subtitle">Handpicked treasures from the world of literature</p>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Classic Literature">
+                <div class="product-info">
+                    <h3>Pride and Prejudice - First Edition</h3>
+                    <p class="price">$89.99</p>
+                    <p class="description">Jane Austen's masterpiece in a beautifully restored first edition binding with original illustrations</p>
+                    <button class="add-to-cart">Add to Library</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1592496431122-2349e0fbc666?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Modern Fiction">
+                <div class="product-info">
+                    <h3>The Seven Husbands of Evelyn Hugo</h3>
+                    <p class="price">$24.99</p>
+                    <p class="description">Taylor Jenkins Reid's captivating tale of love, ambition, and the price of fame</p>
+                    <button class="add-to-cart">Add to Library</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1550399105-c4db5fb85c18?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Poetry Collection">
+                <div class="product-info">
+                    <h3>Leaves of Grass - Collector's Edition</h3>
+                    <p class="price">$45.99</p>
+                    <p class="description">Walt Whitman's revolutionary poetry collection in a leather-bound collector's edition</p>
+                    <button class="add-to-cart">Add to Library</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Philosophy">
+                <div class="product-info">
+                    <h3>Meditations by Marcus Aurelius</h3>
+                    <p class="price">$19.99</p>
+                    <p class="description">Ancient wisdom for modern life, beautifully translated and annotated</p>
+                    <button class="add-to-cart">Add to Library</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1606492905203-14b5c5d70b8e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Science Fiction">
+                <div class="product-info">
+                    <h3>Dune - 50th Anniversary Edition</h3>
+                    <p class="price">$34.99</p>
+                    <p class="description">Frank Herbert's epic masterpiece with exclusive artwork and author commentary</p>
+                    <button class="add-to-cart">Add to Library</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Mystery">
+                <div class="product-info">
+                    <h3>Gone Girl - Signed Edition</h3>
+                    <p class="price">$42.99</p>
+                    <p class="description">Gillian Flynn's psychological thriller, personally signed by the author</p>
+                    <button class="add-to-cart">Add to Library</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section id="categories" class="categories">
+        <h2>Literary Genres</h2>
+        <div class="categories-grid">
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Fiction">
+                <h3>Literary Fiction</h3>
+                <p>Thought-provoking narratives that explore the human condition</p>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Classics">
+                <h3>Timeless Classics</h3>
+                <p>Enduring masterworks that have shaped literary history</p>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Poetry">
+                <h3>Poetry & Verse</h3>
+                <p>Lyrical expressions of beauty, emotion, and human experience</p>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Philosophy">
+                <h3>Philosophy</h3>
+                <p>Profound insights into life, existence, and human nature</p>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1596727147705-61a532a659bd?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Science Fiction">
+                <h3>Science Fiction</h3>
+                <p>Imaginative explorations of future possibilities and worlds</p>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1551029506-0807df4e2031?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Biography">
+                <h3>Biography & Memoir</h3>
+                <p>Inspiring life stories and personal journeys</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands/Publishers -->
+    <section class="brands">
+        <h2>Prestigious Publishers</h2>
+        <p class="section-subtitle">We partner with the world's finest publishing houses</p>
+        <div class="brands-grid">
+            <div>
+                <div class="brand-logo">
+                    <img src="https://images.unsplash.com/photo-1486312338219-ce68e2c6b696?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80&q=80" alt="Penguin Classics">
+                    <p>Penguin Classics</p>
+                </div>
+            </div>
+            <div>
+                <div class="brand-logo">
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80&q=80" alt="Oxford Press">
+                    <p>Oxford University Press</p>
+                </div>
+            </div>
+            <div>
+                <div class="brand-logo">
+                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80&q=80" alt="Random House">
+                    <p>Random House</p>
+                </div>
+            </div>
+            <div>
+                <div class="brand-logo">
+                    <img src="https://images.unsplash.com/photo-1524749292158-7540c2494485?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80&q=80" alt="Harper Collins">
+                    <p>HarperCollins</p>
+                </div>
+            </div>
+            <div>
+                <div class="brand-logo">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80&q=80" alt="Vintage Books">
+                    <p>Vintage Books</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose">
+        <h2>Why Choose BookNest?</h2>
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">📖</div>
+                <h3>Curated Excellence</h3>
+                <p>Every book is personally selected by our team of literary experts, ensuring only the finest additions to your library.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🌟</div>
+                <h3>Rare & First Editions</h3>
+                <p>Access to exclusive first editions, signed copies, and rare manuscripts that you won't find anywhere else.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💎</div>
+                <h3>Premium Quality</h3>
+                <p>From binding to paper quality, we ensure every book meets the highest standards of craftsmanship.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎓</div>
+                <h3>Expert Guidance</h3>
+                <p>Our literary scholars provide personalized recommendations and reading guides to enhance your journey.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🌍</div>
+                <h3>Global Community</h3>
+                <p>Join a worldwide network of passionate readers sharing insights, reviews, and literary discussions.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🚀</div>
+                <h3>Swift Delivery</h3>
+                <p>Carefully packaged and delivered worldwide with tracking, ensuring your books arrive in perfect condition.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Sellers -->
+    <section class="best-sellers">
+        <h2>Current Bestsellers</h2>
+        <div class="sellers-grid">
+            <div class="seller-item">
+                <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=250&q=80" alt="Bestseller 1">
+                <h4>Where the Crawdads Sing</h4>
+                <p>$26.99</p>
+            </div>
+            <div class="seller-item">
+                <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=250&q=80" alt="Bestseller 2">
+                <h4>Atomic Habits</h4>
+                <p>$18.99</p>
+            </div>
+            <div class="seller-item">
+                <img src="https://images.unsplash.com/photo-1592496431122-2349e0fbc666?ixlib=rb-4.0.3&auto=format&fit=crop&w=250&q=80" alt="Bestseller 3">
+                <h4>The Thursday Murder Club</h4>
+                <p>$22.99</p>
+            </div>
+            <div class="seller-item">
+                <img src="https://images.unsplash.com/photo-1606492905203-14b5c5d70b8e?ixlib=rb-4.0.3&auto=format&fit=crop&w=250&q=80" alt="Bestseller 4">
+                <h4>Klara and the Sun</h4>
+                <p>$24.99</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials">
+        <h2>Reader Reviews</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial">
+                <p>BookNest has transformed my reading experience. The quality of their selections and the care they put into each order is extraordinary. I've discovered authors I never would have found otherwise.</p>
+                <span>Emily Rodriguez, Literature Professor</span>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+            </div>
+            <div class="testimonial">
+                <p>As a collector of first editions, I can say BookNest provides unmatched authenticity and condition. Their expertise in rare books is evident in every purchase.</p>
+                <span>James Morrison, Book Collector</span>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+            </div>
+            <div class="testimonial">
+                <p>The personalized recommendations have introduced me to genres I never thought I'd enjoy. Their literary experts truly understand what makes a great read.</p>
+                <span>Sarah Chen, Avid Reader</span>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+            </div>
+        </div>
+        <div class="more-testimonial">
+            <p><em>"BookNest doesn't just sell books – they curate literary experiences. Each package feels like receiving a gift from a dear friend who knows your taste perfectly."</em> - The Literary Review</p>
+        </div>
+    </section>
+
+    <!-- Blog -->
+    <section id="blog" class="blog">
+        <h2>Literary Insights</h2>
+        <div class="blog-grid">
+            <div class="blog-post">
+                <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Reading Guide">
+                <h3>The Art of Slow Reading</h3>
+                <p>Discover how taking your time with great literature can deepen understanding and enhance the reading experience. Our guide to mindful reading practices.</p>
+                <a href="#" class="read-more">Read Full Article</a>
+            </div>
+            <div class="blog-post">
+                <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Book Care">
+                <h3>Caring for Your Collection</h3>
+                <p>Expert tips on preserving and maintaining your book collection, from proper storage to handling rare editions with care.</p>
+                <a href="#" class="read-more">Read Full Article</a>
+            </div>
+            <div class="blog-post">
+                <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Author Interview">
+                <h3>Author Spotlight: Contemporary Voices</h3>
+                <p>Exclusive interviews with today's most compelling authors, discussing their craft, inspiration, and latest works.</p>
+                <a href="#" class="read-more">Read Full Article</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h3>Do you authenticate rare books and first editions?</h3>
+                <p>Yes, all rare books and first editions undergo rigorous authentication by our team of bibliographic experts before being offered for sale.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What is your return policy?</h3>
+                <p>We offer a 30-day return policy for all books in original condition. Rare and signed editions have special handling procedures detailed in your order confirmation.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do you offer personalized reading recommendations?</h3>
+                <p>Absolutely! Our literary experts provide personalized recommendations based on your reading history and preferences. Simply contact our concierge service.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How do you ensure books arrive in perfect condition?</h3>
+                <p>Each book is carefully inspected, wrapped in archival materials, and shipped in protective packaging designed specifically for books and rare manuscripts.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do you have a membership or loyalty program?</h3>
+                <p>Yes, our Literary Circle membership offers exclusive discounts, early access to rare editions, and invitations to author events and literary discussions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <h2>Join Our Literary Circle</h2>
+        <p>Receive monthly curated book recommendations, exclusive offers, and invitations to literary events</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">Join Circle</button>
+        </form>
+        <div class="privacy-note">
+            <p>We respect your privacy. Read our <a href="#">Privacy Policy</a></p>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="contact-info">
+            <h3>Connect With Us</h3>
+            <p>📍 <strong>Literary Quarter</strong><br>
+            123 Bookworm Lane<br>
+            Readers Haven, RH 12345</p>
+            
+            <p>📞 <strong>Call Us:</strong> +1 (555) 123-BOOK</p>
+            <p>✉️ <strong>Email:</strong> hello@booknest.com</p>
+            
+            <p><strong>Store Hours:</strong><br>
+            Monday - Saturday: 9:00 AM - 9:00 PM<br>
+            Sunday: 11:00 AM - 7:00 PM</p>
+            
+            <div class="social-links">
+                <a href="#">📚</a>
+                <a href="#">📖</a>
+                <a href="#">📝</a>
+                <a href="#">📰</a>
+            </div>
+        </div>
+        <div class="contact-form">
+            <h3>Send Us a Message</h3>
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <input type="text" placeholder="Subject" required>
+                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>BookNest</h4>
+                <p>Your trusted literary companion since 1952. We believe every book has the power to change a life, and every reader deserves access to exceptional literature.</p>
+                <div class="social-links">
+                    <a href="#">📚 Follow Our Reading Journey</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Book Categories</h4>
+                <ul>
+                    <li><a href="#">Literary Fiction</a></li>
+                    <li><a href="#">Classic Literature</a></li>
+                    <li><a href="#">Poetry & Drama</a></li>
+                    <li><a href="#">Philosophy & Essays</a></li>
+                    <li><a href="#">Biography & Memoir</a></li>
+                    <li><a href="#">Rare & Collectible</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Reader Services</h4>
+                <ul>
+                    <li><a href="#">Personal Book Curator</a></li>
+                    <li><a href="#">Reading Group Guides</a></li>
+                    <li><a href="#">Author Event Calendar</a></li>
+                    <li><a href="#">Book Condition Reports</a></li>
+                    <li><a href="#">Gift Certificates</a></li>
+                    <li><a href="#">Literary Consultation</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Customer Care</h4>
+                <ul>
+                    <li><a href="#">Order Tracking</a></li>
+                    <li><a href="#">Shipping Information</a></li>
+                    <li><a href="#">Returns & Exchanges</a></li>
+                    <li><a href="#">Size & Condition Guide</a></li>
+                    <li><a href="#">Contact Support</a></li>
+                    <li><a href="#">Literary Circle Membership</a></li>
+                </ul>
+                <div class="footer-newsletter">
+                    <input type="email" placeholder="Weekly literary digest">
+                    <button>Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 BookNest Literary Haven. All rights reserved. | Curating exceptional literature with passion and expertise.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced Slider functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.slider-dot');
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Auto-advance slides
+        setInterval(nextSlide, 5000);
+
+        // Manual navigation
+        document.querySelector('.next').addEventListener('click', nextSlide);
+        document.querySelector('.prev').addEventListener('click', prevSlide);
+
+        // Dot navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlide = index;
+                showSlide(currentSlide);
+            });
+        });
+
+        // Enhanced Timer countdown
+        function updateTimer() {
+            const timer = document.getElementById('timer');
+            let time = 86400; // 24 hours in seconds
+            
+            const countdown = setInterval(() => {
+                const hours = Math.floor(time / 3600);
+                const minutes = Math.floor((time % 3600) / 60);
+                const seconds = time % 60;
+                
+                timer.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                time--;
+                if (time < 0) {
+                    time = 86400; // Reset to 24 hours
+                }
+            }, 1000);
+        }
+
+        // Enhanced Cart functionality
+        let cartCount = 0;
+        const cartCountElement = document.querySelector('.cart-count');
+
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                cartCount++;
+                cartCountElement.textContent = cartCount;
+                
+                // Visual feedback
+                this.style.background = 'linear-gradient(135deg, var(--gold), #ffc107)';
+                this.style.color = 'var(--dark-brown)';
+                this.textContent = 'Added to Library!';
+                
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    this.style.background = 'linear-gradient(135deg, var(--primary-brown), var(--light-brown))';
+                    this.style.color = '#fff';
+                    this.textContent = 'Add to Library';
+                }, 2000);
+
+                // Cart icon animation
+                cartCountElement.style.animation = 'none';
+                setTimeout(() => {
+                    cartCountElement.style.animation = 'pulse 2s infinite';
+                }, 10);
+            });
+        });
+
+        // FAQ functionality
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const isActive = this.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(faq => {
+                    faq.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Newsletter form
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const input = this.querySelector('input[type="email"]');
+            const button = this.querySelector('button');
+            const originalText = button.textContent;
+            
+            button.textContent = 'Welcome to the Circle!';
+            button.style.background = 'linear-gradient(135deg, var(--gold), #ffc107)';
+            button.style.color = 'var(--dark-brown)';
+            input.value = '';
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = 'linear-gradient(135deg, #fff, #f8f8f8)';
+                button.style.color = 'var(--primary-brown)';
+            }, 3000);
+        });
+
+        // Contact form
+        document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const button = this.querySelector('button');
+            const originalText = button.textContent;
+            
+            button.textContent = 'Message Sent!';
+            button.style.background = 'linear-gradient(135deg, var(--gold), #ffc107)';
+            
+            // Clear form
+            this.reset();
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = 'linear-gradient(135deg, var(--primary-brown), var(--light-brown))';
+            }, 3000);
+        });
+
+        // Footer newsletter
+        document.querySelector('.footer-newsletter button').addEventListener('click', function() {
+            const input = document.querySelector('.footer-newsletter input');
+            if (input.value) {
+                this.textContent = 'Subscribed!';
+                this.style.background = 'linear-gradient(135deg, var(--gold), #ffc107)';
+                input.value = '';
+                
+                setTimeout(() => {
+                    this.textContent = 'Subscribe';
+                    this.style.background = 'linear-gradient(135deg, var(--light-brown), var(--primary-brown))';
+                }, 2000);
+            }
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize timer
+        updateTimer();
+
+        // Search functionality (basic)
+        document.querySelector('.search-icon').addEventListener('click', function() {
+            const searchTerm = prompt('What book are you looking for?');
+            if (searchTerm) {
+                alert(`Searching for "${searchTerm}"... This would connect to your search functionality.`);
+            }
+        });
+    </script>
+</body>
+</html>
